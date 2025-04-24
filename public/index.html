@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Media Viewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <h1>Media Server</h1>
+    </div>
+    <nav>
+      <a href="#movies" onclick="showSection('movies')">Movies</a>
+      <a href="#series" onclick="showSection('series')">Series</a>
+      <a href="#songs" onclick="showSection('songs')">Songs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="movies" class="content-section">
+      <h2>Movies</h2>
+      <div id="movies-list" class="items-list"></div>
+    </section>
+
+    <section id="series" class="content-section" style="display: none;">
+      <h2>Series</h2>
+      <div id="series-list" class="items-list"></div>
+    </section>
+
+    <section id="songs" class="content-section" style="display: none;">
+      <h2>Songs</h2>
+      <div id="songs-list" class="items-list"></div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
