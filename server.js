@@ -31,6 +31,24 @@ let allData = {
     series:series,
     songs:songs
 }
+// Utility methods
+getById = (arr, id) => {
+    return arr.find(item => item.id === id);
+  }
+getIndexById = (arr, id) => {
+    return arr.findIndex(item => item.id === id);
+  }
+
+app.get('/movies/:id', (req, res) => {
+    const id = parseInt(req.params.id);
+    const movie =  getById(movies, id);
+    if (!movie) {
+      res.status(404).json({ message: 'Movie not found' });
+    } else {
+      res.status(200).json(movie);
+    }
+  });
+// End of Utility methods
 
 //Get Endpoints
 app.get('/', (req, res) => {
@@ -50,24 +68,7 @@ app.get('/movies', (req, res) => {
   });
 
 // Get by Id endpoints
-// Utility methods
-getById = (arr, id) => {
-    return arr.find(item => item.id === id);
-  }
-getIndexById = (arr, id) => {
-    return arr.findIndex(item => item.id === id);
-  }
 
-app.get('/movies/:id', (req, res) => {
-    const id = parseInt(req.params.id);
-    const movie =  getById(movies, id);
-    if (!movie) {
-      res.status(404).json({ message: 'Movie not found' });
-    } else {
-      res.status(200).json(movie);
-    }
-  });
-  
   app.get('/series/:id', (req, res) => {
     const id = parseInt(req.params.id);
     const serie =  getById(series, id);
@@ -114,7 +115,7 @@ app.post('/movies', (req, res) => {
     if (!title || !artist || !year || !genre) {
         res.status(400).json({ message: 'Please add all required fields: title, artist, year' });
     } else {
-      songs.push({ id: songs.length + 1, title, artist, year });
+      songs.push({ id: songs.length + 1, title, artist, genre, year });
       res.status(201).json(songs);
     }
   });
